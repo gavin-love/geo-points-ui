@@ -24,8 +24,8 @@ class Landing extends Component {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then(() => {
-
+      .then(response => {
+        console.log(response)
       })
       .then(() => console.log('Welcome Back!'))
       .catch(error => {
@@ -37,6 +37,7 @@ class Landing extends Component {
     firebase.auth()
       .onAuthStateChanged(user => {
         if(user) {
+          console.log(user)
           this.setState({
             loggedIn: true,
             userName: user._user.displayName
@@ -46,18 +47,38 @@ class Landing extends Component {
   }
 
   render() {
-    return (
-      <View>
-        <Text>Email</Text>
-        <TextInput style={styles.textInput} value={this.state.name} onChangeText={(name) => this.setState({ name })}/>
-        <Text>Password</Text>
-        <TextInput style={styles.textInput} value={this.state.email} onChangeText={(email) => this.setState({ email })}/>
-        <View style={styles.submit}>
-          <Button title='submit' onPress={this.handleSignIn}/>
+    const { navigate } = this.props.navigation;
+    if(!this.state.loggedIn) {
+      return (
+        <View>
+          <Text>Email</Text>
+          <TextInput style={styles.textInput} value={this.state.name} onChangeText={(name) => this.setState({ name })}/>
+          <Text>Password</Text>
+          <TextInput style={styles.textInput} value={this.state.email} onChangeText={(email) => this.setState({ email })}/>
+          <View style={styles.submit}>
+            <Button title='submit' onPress={this.handleSignIn}/>
+          </View>
+          <View style={styles.submit}>
+            <Button title="sign up" onPress={() => {
+              navigate('SignUp');
+            }}/>
+          </View>
         </View>
-        <Text>{this.state.loggedIn ? `Welcome ${this.state.userName}`: 'You should log in'}</Text>
-      </View>
-    )
+      )
+    } else {
+      return (
+        <View>
+          <Text>{`Welcome ${this.state.userName}!`}</Text>
+          <View style={styles.signOut}>
+            <Button title="Sign Out" onPress={() => {
+              firebase.auth().signOut()
+                .then(() => console.log('You were signed out'))
+                .catch(error => console.log(error.message))
+            }} />
+          </View>
+        </View>
+      )
+    }
   }
 }
 
