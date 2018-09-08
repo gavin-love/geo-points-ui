@@ -18,7 +18,7 @@ class SignUp extends Component {
     return fetch('http://localhost:3000/api/v1/users',{
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: user.user.email })
+      body: JSON.stringify({ email: user._user.email })
     })
     .then(response => response.json())
     .then(result => console.log(result))
@@ -37,8 +37,9 @@ class SignUp extends Component {
             displayName: this.state.userName
           })
         }
+        return user
       })
-      .then(user => console.log(user))
+      .then(user => this.postNewUser(user))
       .catch(error => {
         console.log(error.message)
       })
