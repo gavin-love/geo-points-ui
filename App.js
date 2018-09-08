@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Platform, Image, Text, View, ScrollView } from 'react-native';
 import Landing from './components/Landing';
 import SignUp from './components/SignUp';
+import SignOut from './components/SignOut';
 
 import firebase from 'react-native-firebase';
 
@@ -21,6 +22,7 @@ export default class App extends React.Component {
     return (
       <ScrollView>
         <View style={styles.container}>
+          <SignOut />
           <SignUp />
           <Landing />
           <View style={styles.modules}>
