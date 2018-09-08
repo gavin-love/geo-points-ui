@@ -1,0 +1,3 @@
+0000000000000000000000000000000000000000 c5b7e48f3143947c3f748026c2e7200d5826fd99 Arram Mandel <airum82@gmail.com> 1536353648 -0600	clone: from https://github.com/invertase/react-native-firebase-starter.git
+c5b7e48f3143947c3f748026c2e7200d5826fd99 8793d7462a8aaa4155db710f0cb3c0a2c684aac1 Arram Mandel <airum82@gmail.com> 1536362722 -0600	commit: Created landing page along with signup and added firebase signup
+8793d7462a8aaa4155db710f0cb3c0a2c684aac1 3de6bafc8acd8fa7db126fdcd98dbfc8d6dcdecd Arram Mandel <airum82@gmail.com> 1536362776 -0600	commit: Set up several dependencies for react-native and firebase
