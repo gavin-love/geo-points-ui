@@ -10,6 +10,7 @@ class SignUp extends Component {
       isAuthenticated: false,
       email: '',
       password: '',
+      userName: ''
     }
   }
 
@@ -31,8 +32,13 @@ class SignUp extends Component {
         this.state.password
       )
       .then(user => {
-        this.postNewUser(user)
+        if(user) {
+          user.updateProfile({
+            displayName: this.state.userName
+          })
+        }
       })
+      .then(user => console.log(user))
       .catch(error => {
         console.log(error.message)
       })
@@ -42,6 +48,8 @@ class SignUp extends Component {
     return (
       <View>
         <Text>Sign up for an account here</Text>
+        <Text>User Name</Text>
+        <TextInput name='user-name' value={this.state.userName} onChangeText={(text) => this.setState({ userName: text })} style={styles.textInput} />
         <Text>Email</Text>
         <TextInput name='email' value={this.state.email} onChangeText={(text) => this.setState({ email: text })} style={styles.textInput}/>
         <Text>Password</Text>
