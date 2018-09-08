@@ -37,9 +37,9 @@ class Landing extends Component {
     firebase.auth()
       .onAuthStateChanged(user => {
         if(user) {
-          console.log(user)
           this.setState({
-            loggedIn: true
+            loggedIn: true,
+            userName: user._user.displayName
           })
         }
       })
@@ -55,7 +55,7 @@ class Landing extends Component {
         <View style={styles.submit}>
           <Button title='submit' onPress={this.handleSignIn}/>
         </View>
-        <Text>{this.state.loggedIn ? 'Welcome!': 'You should log in'}</Text>
+        <Text>{this.state.loggedIn ? `Welcome ${this.state.userName}`: 'You should log in'}</Text>
       </View>
     )
   }
