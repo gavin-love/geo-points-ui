@@ -3,8 +3,6 @@ import { StyleSheet, Platform, Image, Text, View, ScrollView } from 'react-nativ
 import { createStackNavigator } from 'react-navigation';
 import Landing from './components/Landing';
 import SignUp from './components/SignUp';
-import SignOut from './components/SignOut';
-
 import firebase from 'react-native-firebase';
 
 const App = createStackNavigator({

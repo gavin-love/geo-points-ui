@@ -37,7 +37,6 @@ class Landing extends Component {
     firebase.auth()
       .onAuthStateChanged(user => {
         if(user) {
-          console.log(user)
           this.setState({
             loggedIn: true,
             userName: user._user.displayName
@@ -67,7 +66,7 @@ class Landing extends Component {
       )
     } else {
       return (
-        <View>
+        <View style={styles.page}>
           <Text>{`Welcome ${this.state.userName}!`}</Text>
           <View style={styles.signOut}>
             <Button title="Sign Out" onPress={() => {
@@ -83,6 +82,9 @@ class Landing extends Component {
 }
 
 const styles = StyleSheet.create({
+  page: {
+    alignItems: 'center'
+  },
   textInput: {
     height: 40,
     borderColor: 'grey',
@@ -95,6 +97,11 @@ const styles = StyleSheet.create({
     height: 30,
     width: 100,
     borderRadius: 5
+  },
+  signOut: {
+    borderColor: 'blue',
+    borderWidth: 1,
+    width: 100
   }
 })
 
