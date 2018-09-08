@@ -40,14 +40,16 @@ class SignUp extends Component {
         return user
       })
       .then(user => this.postNewUser(user))
+      .then(() => {
+        this.setState({
+          email: '',
+          password: '',
+          userName: ''
+        })
+      })
       .catch(error => {
         console.log(error.message)
       })
-    this.setState({
-      email: '',
-      password: '',
-      userName: ''
-    })
   }
 
   render() {
